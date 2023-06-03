@@ -1,16 +1,25 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import React, { Component } from 'react';
+import FormAddContact from './FormAddContact';
+import { Container } from 'react-bootstrap';
+import Section from './Section';
+import Contacts from './Contacts';
+
+export default class App extends Component {
+  state = {
+    contacts: [],
+    name: '',
+  };
+
+  render() {
+    return (
+      <Container>
+        <Section title="Phonebook">
+        <FormAddContact />
+        </Section>
+        <Section title="Contacts">
+          <Contacts />
+        </Section>
+      </Container>
+    );
+  }
+}
