@@ -1,15 +1,30 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-import { ListGroup } from 'react-bootstrap'
+import PropTypes from 'prop-types';
+import { Alert, ListGroup } from 'react-bootstrap';
 
-const Contacts = props => {
+const Contacts = ({ contacts }) => {
   return (
-    <ListGroup>
-      <ListGroup.Item>First item</ListGroup.Item>
-    </ListGroup>
-  )
-}
+    <>
+      {contacts.length !== 0 ? (
+        <ListGroup>
+          {contacts.map(({ name, id }) => {
+            return <ListGroup.Item key={id}>{name}</ListGroup.Item>;
+          })}
+        </ListGroup>
+      ) : (
+        <Alert variant="info">Contact list is empty</Alert>
+      )}
+    </>
+  );
+};
 
-Contacts.propTypes = {}
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ),
+};
 
 export default Contacts
