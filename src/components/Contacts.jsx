@@ -6,9 +6,16 @@ const Contacts = ({ contacts }) => {
   return (
     <>
       {contacts.length !== 0 ? (
-        <ListGroup>
-          {contacts.map(({ name, id }) => {
-            return <ListGroup.Item key={id}>{name}</ListGroup.Item>;
+        <ListGroup variant="flush">
+          {contacts.map(({ name, number, id }) => {
+            return (
+              <ListGroup.Item key={id}>
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">{name}</div>
+                  {number}
+                </div>
+              </ListGroup.Item>
+            );
           })}
         </ListGroup>
       ) : (
