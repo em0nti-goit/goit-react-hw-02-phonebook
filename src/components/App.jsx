@@ -17,7 +17,19 @@ export default class App extends Component {
     filter: '',
   };
 
+  findContact = name => {
+    const { contacts } = this.state;
+    const normalizedName = name.toLowerCase();
+    return contacts.find(
+      ({name}) => name.toLowerCase() === normalizedName
+    );
+  };
+
   addContact = ({ name, number }) => {
+    if (this.findContact(name)) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { name, number, id: nanoid() }],
     }));
