@@ -25,9 +25,12 @@ export class FormAddContact extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form
+        onSubmit={this.handleSubmit}
+        className="border border-primary-subtle p-3 rounded-3"
+      >
         <Form.Group className="mb-3" controlId="formAddContactName">
-          <Form.Label>Name</Form.Label>
+          <Form.Label className="fs-4 fw-medium">Name</Form.Label>
           <Form.Control
             type="text"
             name="name"
@@ -44,7 +47,7 @@ export class FormAddContact extends Component {
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formAddContactTel">
-          <Form.Label>Number</Form.Label>
+          <Form.Label className="fs-4 fw-medium">Number</Form.Label>
           <Form.Control
             type="tel"
             name="number"
