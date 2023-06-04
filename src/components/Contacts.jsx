@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Alert, ListGroup } from 'react-bootstrap';
 import Contact from './Contact';
 
-const Contacts = ({ contacts }) => {
+const Contacts = ({ contacts, onDelete }) => {
   return (
     <>
       {contacts.length !== 0 ? (
         <ListGroup variant="flush">
-          {contacts.map(({id, ...info}) => (
-            <Contact key={id} contact={info} />
+          {contacts.map(contact => (
+            <Contact key={contact.id} contact={contact} onDelete={onDelete} />
           ))}
         </ListGroup>
       ) : (

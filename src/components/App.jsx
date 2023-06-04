@@ -20,9 +20,7 @@ export default class App extends Component {
   findContact = name => {
     const { contacts } = this.state;
     const normalizedName = name.toLowerCase();
-    return contacts.find(
-      ({name}) => name.toLowerCase() === normalizedName
-    );
+    return contacts.find(({ name }) => name.toLowerCase() === normalizedName);
   };
 
   addContact = ({ name, number }) => {
@@ -32,6 +30,12 @@ export default class App extends Component {
     }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { name, number, id: nanoid() }],
+    }));
+  };
+
+  onDelete = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
 
@@ -53,13 +57,16 @@ export default class App extends Component {
   render() {
     const { filter } = this.state;
     return (
-      <Container>
+      <Container className='p-3'>
         <Section title="Phonebook">
           <FormAddContact onSubmit={this.addContact} />
         </Section>
         <Section title="Contacts">
           <Filter value={filter} onChange={this.onFilterChange} />
-          <Contacts contacts={this.getFilteredContacts()} />
+          <Contacts
+            contacts={this.getFilteredContacts()}
+            onDelete={this.onDelete}
+          />
         </Section>
       </Container>
     );
