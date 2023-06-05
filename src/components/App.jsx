@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormAddContact from './FormAddContact';
-import { Container } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import Section from './Section';
 import Contacts from './Contacts';
 import { nanoid } from 'nanoid';
@@ -50,18 +50,24 @@ export default class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     return (
       <Container className="w-50 p-3">
         <Section title="Phonebook">
           <FormAddContact onSubmit={this.addContact} />
         </Section>
         <Section title="Contacts">
-          <Filter value={filter} onChange={this.onFilterChange} />
-          <Contacts
-            contacts={this.getFilteredContacts()}
-            onDelete={this.onDelete}
-          />
+          {contacts.length !== 0 ? (
+            <>
+              <Filter value={filter} onChange={this.onFilterChange} />
+              <Contacts
+                contacts={this.getFilteredContacts()}
+                onDelete={this.onDelete}
+              />
+            </>
+          ) : (
+            <Alert variant="info">Contact list is empty</Alert>
+          )}
         </Section>
       </Container>
     );
