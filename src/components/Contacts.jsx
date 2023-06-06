@@ -6,8 +6,8 @@ import Contact from './Contact';
 const Contacts = ({ contacts, onDelete }) => {
   return (
         <ListGroup variant="flush">
-          {contacts.map(contact => (
-            <Contact key={contact.id} contact={contact} onDelete={onDelete} />
+          {contacts.map(({id,...contactInfo}) => (
+            <Contact key={id} contact={contactInfo} onDelete={()=>onDelete(id)} />
           ))}
         </ListGroup>
   );
